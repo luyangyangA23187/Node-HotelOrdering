@@ -12,7 +12,6 @@ const CityController = {
     getCityThree:async(req,res)=>{
         let {cityId} = req.query
         let districtList = await CityService.getCityThree(cityId)
-        console.log(districtList)
         res.send({
             status:true,
             data:districtList

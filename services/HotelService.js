@@ -1,4 +1,3 @@
-const express = require('express')
 const CityModel = require('../model/CityModel')
 const HotelModel = require('../model/HotelModel')
 
@@ -11,21 +10,18 @@ const HotelService = {
 
         //处理数据，将区域拼到酒店列表中
         //此处改变属性名称后返回给前端
-        let newList = hotelList[0].map(hotel=>{
-            let {id,name,address,picture,longitude,latitude,description} = hotel
-            let newHotel={id,name,address,picture,longitude,latitude,description}
-            newHotel['minPrice'] = hotel['min_price']
-            newHotel['cityId'] = hotel['cit_id']
+        hotelList[0].forEach(hotel=>{
             districtList[0].forEach(district=>{
                 if(hotel['cit_id']===district['id']){
-                    newHotel['city'] = district
+                    hotel['city'] = district
                 }
             })
-            
-            return newHotel
+            hotel['minPrice'] = hotel['min_price']
+            hotel['cityId'] = hotel['cit_id']
+            delete hotel['min_price']
+            delete hotel['cit_id']
         })
-
-        return newList
+        return hotelList[0]
     }
 }
 
