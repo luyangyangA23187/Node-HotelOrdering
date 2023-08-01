@@ -6,3 +6,10 @@ const alipaySdk = new AlipaySdk({
     privateKey: fs.readFileSync('private-key.pem', 'ascii'),
     alipayPublicKey: fs.readFileSync('alipay-public-key.pem', 'ascii'),
   });
+
+(async function(){
+    const result = await alipaySdk.exec('alipay.open.public.qrcode.create');
+  
+    console.log(result)
+})()
+  
