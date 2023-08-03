@@ -27,6 +27,13 @@ const HotelModel={
         return db.promise().query(`
         SELECT * FROM restroom WHERE roomId=${roomId}
         `)
+    },
+
+    //设置房间剩余量
+    setRestRoom:(id,month,num)=>{
+        return db.promise().query(`
+        UPDATE restroom SET m${month}=${num} WHERE id=${id}
+        `)
     }
 }
 

@@ -7,6 +7,7 @@ const loginApi = require('./loginApi')
 const userApi = require('./userApi')
 const orderApi = require('./orderRouter')
 
+
 apiRouter.use('/city',cityApi)
 
 apiRouter.use('/hotel',hotelApi)
@@ -15,6 +16,10 @@ apiRouter.use('/login',loginApi)
 
 //校验token，不满足则直接返回
 apiRouter.use((req,res,next)=>{
+    if(req.url.includes('/recieveNotify')){
+        next()
+        return
+    }
     const token = req.headers.authorization?.split(' ')[1]
     //token不存在则无权限,直接返回
     if(!token){

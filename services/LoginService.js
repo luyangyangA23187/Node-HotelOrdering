@@ -15,7 +15,7 @@ const LoginService = {
         if(uidRet[0].length) return 1
 
         //插入用户
-        LoginModel.addUser([name,email,phone,sexual,uid])
+        await LoginModel.addUser([name,email,phone,sexual,uid])
         return 0
     },
 
